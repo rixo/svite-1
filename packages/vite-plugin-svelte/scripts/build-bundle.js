@@ -14,8 +14,8 @@ const external = [].concat(
 const buildOptions = {
   platform: 'node',
   target: 'node12',
-  entryPoints: ['src/index.ts'],
-  outfile: 'dist/index.ts',
+  entryPoints: ['src/index.ts', 'src/svelte-hmr/runtime.ts'],
+  outdir: 'dist',
   bundle: true,
   external,
   logLevel: 'warning',

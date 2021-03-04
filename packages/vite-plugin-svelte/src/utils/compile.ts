@@ -1,12 +1,17 @@
 import { CompileOptions, Processed, ResolvedOptions } from './options'
 import { compile, preprocess, walk } from 'svelte/compiler'
 // @ts-ignore
-import { createMakeHot } from 'svelte-hmr'
+import { createMakeHot } from '../svelte-hmr/createMakeHot'
 import { SvelteRequest } from './id'
 import { safeBase64Hash } from './hash'
 import { log } from './log'
+import { hotApiEsm, proxyAdapterDom } from '../svelte-hmr/runtime'
 
-const makeHot = createMakeHot({ walk })
+const makeHot = createMakeHot({
+  walk,
+  hotApi: hotApiEsm,
+  adapter: proxyAdapterDom
+})
 
 export async function compileSvelte(
   svelteRequest: SvelteRequest,
